@@ -1,0 +1,19 @@
+{
+  "name": "eleitorAi-vue",
+  "version": "1.0.0",
+  "description": "EleitorAi - Explorador premium de dados eleitorais de Rondônia (2022) em Vue puro",
+  "type": "module",
+  "scripts": {
+    "build:data": "node scripts/build-data.js",
+    "dev": "vite",
+    "build": "node scripts/build-data.js && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.4.21"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.4",
+    "vite": "^5.2.8"
+  }
+}

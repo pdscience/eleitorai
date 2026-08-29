@@ -1,0 +1,1 @@
+{"id":"eleitorado-genero","name":"Eleitorado × Gênero","group":"Perfil do Eleitorado","year":2022,"description":"Distribuição do eleitorado por gênero.","totalRows":3,"pageSize":5000,"pageCount":1,"columns":[{"name":"Gênero","type":"text"},{"name":"Eleitorado","type":"number"},{"name":"Voto Obrigatório","type":"number"},{"name":"Voto Facultativo","type":"number"}]}
