@@ -35,7 +35,6 @@ const eleitos = computed(() => {
       nome: r.NM_URNA_CANDIDATO || r.NM_CANDIDATO,
       nomeCompleto: r.NM_CANDIDATO,
       partido: r.SG_PARTIDO,
-      partidoNome: r.NM_PARTIDO,
       situacao: r.DS_SIT_TOT_TURNO,
       votos: 0,
       municipios: new Set()

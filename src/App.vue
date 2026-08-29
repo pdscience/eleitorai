@@ -25,6 +25,7 @@ const allRows = ref([])
 const loadedServerPage = ref(1)
 const viewSize = ref(50)
 const jump = ref('')
+const sidebarOpen = ref(false)
 
 const FULL_THRESHOLD = 50000
 const VIEW_SIZES = [25, 50, 100, 200]
@@ -204,9 +205,7 @@ function pretty(name) {
 
 onMounted(async () => {
   await loadIndex()
-  if (index.value?.categories?.length) {
-    await selectCategory(index.value.categories[0].id)
-  }
+  onSelect('__dashboard__')
 })
 
 watch(query, () => { viewPage.value = 1 })
@@ -219,10 +218,19 @@ watch(viewSize, () => { viewPage.value = 1 })
       :groups="index?.groups || {}"
       :categories="index?.categories || []"
       :active="activeId"
+      :open="sidebarOpen"
       @select="onSelect"
+      @close="sidebarOpen = false"
     />
 
     <main class="main">
+      <button class="menu-toggle" @click="sidebarOpen = !sidebarOpen">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
       <Dashboard v-if="showDashboard" />
       <Simulador v-else-if="showSimulador" />
       <Eleitos v-else-if="showEleitos" />

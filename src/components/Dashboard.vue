@@ -34,7 +34,6 @@ const candidates = computed(() => {
         urna: r.NM_URNA_CANDIDATO || r.NM_CANDIDATO,
         nome: r.NM_CANDIDATO,
         partido: r.SG_PARTIDO,
-        partidoNome: r.NM_PARTIDO,
         cargo: r.DS_CARGO,
         turno: r.NR_TURNO,
         situacao: r.DS_SIT_TOT_TURNO,
@@ -388,7 +387,7 @@ onMounted(async () => {
         </label>
         <div v-if="selectedCand" class="dash-candmeta">
           <span class="chip">{{ selectedCand.cargo }}</span>
-          <span class="chip">{{ selectedCand.partido }} · {{ selectedCand.partidoNome }}</span>
+          <span class="chip">{{ selectedCand.partido }}</span>
           <span class="chip">{{ selectedCand.situacao }}</span>
           <span class="chip">Turno {{ selectedCand.turno }}</span>
         </div>

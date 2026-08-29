@@ -2,15 +2,28 @@
 defineProps({
   groups: { type: Object, default: () => ({}) },
   categories: { type: Array, default: () => [] },
-  active: { type: String, default: '' }
+  active: { type: String, default: '' },
+  open: { type: Boolean, default: false }
 })
-const emit = defineEmits(['select'])
+const emit = defineEmits(['select', 'close'])
+
+function onSelect(id) {
+  emit('select', id)
+  emit('close')
+}
 </script>
 
 <template>
-  <aside class="sidebar">
+  <div class="sidebar-overlay" :class="{ visible: open }" @click="emit('close')"></div>
+  <aside class="sidebar" :class="{ open }">
     <div class="brand">
-      <div class="logo">E</div>
+      <div class="logo">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#05121a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="7" width="18" height="14" rx="2"/>
+          <path d="M8 7V5a4 4 0 0 1 8 0v2"/>
+          <polyline points="9 13 11 15 15 11"/>
+        </svg>
+      </div>
       <div>
         <div class="title">Eleitor<span>Ai</span></div>
         <div class="sub">RO · Eleições 2022</div>
@@ -23,7 +36,7 @@ const emit = defineEmits(['select'])
         <button
           class="nav-item"
           :class="{ active: active === '__dashboard__' }"
-          @click="emit('select', '__dashboard__')"
+          @click="onSelect('__dashboard__')"
         >
           <span class="dot"></span>
           <span class="label">Painel do Candidato</span>
@@ -31,7 +44,7 @@ const emit = defineEmits(['select'])
         <button
           class="nav-item"
           :class="{ active: active === '__simulador__' }"
-          @click="emit('select', '__simulador__')"
+          @click="onSelect('__simulador__')"
         >
           <span class="dot"></span>
           <span class="label">Simulador de Votos</span>
@@ -39,7 +52,7 @@ const emit = defineEmits(['select'])
         <button
           class="nav-item"
           :class="{ active: active === '__eleitos__' }"
-          @click="emit('select', '__eleitos__')"
+          @click="onSelect('__eleitos__')"
         >
           <span class="dot"></span>
           <span class="label">Candidatos Eleitos</span>
@@ -54,7 +67,7 @@ const emit = defineEmits(['select'])
             :key="id"
             class="nav-item"
             :class="{ active: id === active }"
-            @click="emit('select', id)"
+            @click="onSelect(id)"
           >
             <span class="dot"></span>
             <span class="label">{{ (categories.find(c => c.id === id) || {}).name }}</span>
